@@ -1,0 +1,19 @@
+/* This is injected after a web page loads */
+
+
+.pipController {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  fill: #fff !important;
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  background-color: rgb(60,64,67);
+}
+
+.pipController:hover {
+  cursor: pointer;
+  background-color: rgb(71, 76, 80);
+}
+
