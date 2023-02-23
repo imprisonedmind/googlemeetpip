@@ -26,10 +26,19 @@ const main = () => {
   }
 
   // We have a pip so keep requesting pip incase new one. 
-  if (document.pictureInPictureElement && activeVideo[0] !== document.pictureInPictureElement) {
+if (document.pictureInPictureElement && activeVideo[0] !== document.pictureInPictureElement) {
+  if (activeVideo[0].readyState < 4) {
+    // If metadata is not loaded yet, force it to load
+    activeVideo[0].load();
+    activeVideo[0].addEventListener('loadedmetadata', () => {
+      activeVideo[0].requestPictureInPicture();
+    });
+  } else {
+    // If metadata is already loaded, request PiP mode
     activeVideo[0].requestPictureInPicture();
-    console.log(document.pictureInPictureElement)
   }
+}
+
 
   // Make sure button icon changes aswell 
   if (!document.pictureInPictureElement) {
