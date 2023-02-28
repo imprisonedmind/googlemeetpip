@@ -27,12 +27,15 @@ const main = () => {
 
   // We have a pip so keep requesting pip incase new one. 
 if (document.pictureInPictureElement && activeVideo[0] !== document.pictureInPictureElement) {
+  // Check if the metadata for the active video element has been loaded
   if (activeVideo[0].readyState < 4) {
-    // If metadata is not loaded yet, force it to load
+    // If metadata is not loaded yet, force it to load and then enter Picture-in-Picture mode
+    activeVideo[0].addEventListener('loadedmetadata', function() {
+      activeVideo[0].requestPictureInPicture();
+    });
     activeVideo[0].load();
-    activeVideo[0].requestPictureInPicture();
   } else {
-    // If metadata is already loaded, request PiP mode
+    // If metadata is already loaded, enter Picture-in-Picture mode
     activeVideo[0].requestPictureInPicture();
   }
 }
